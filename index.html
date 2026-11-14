@@ -51,6 +51,48 @@
             <span style="font-family: sans-serif; font-size: 0.9rem;">Developed by KEMO</span>
         </a>
     </div>
+        <!-- صندوق حديث اليوم -->
+    <div id="hadith-box" style="display: none; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 15px; padding: 20px; margin-top: 30px; margin-bottom: 20px; max-width: 350px; width: 100%; color: #fff; text-align: center;">
+        <h3 style="margin-bottom: 10px; font-size: 1.1rem; color: #ffc93c;">📜 حديث اليوم</h3>
+        <p id="hadith-text" style="font-size: 1rem; line-height: 1.8; margin-bottom: 10px;"></p>
+        <p id="hadith-explanation" style="font-size: 0.9rem; line-height: 1.6; color: #ddd;"></p>
+        <span id="hadith-grade" style="display: inline-block; margin-top: 10px; background: #2e7d32; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem;"></span>
+    </div>
+
+    <script>
+        // ... (كود الوضع الليلي اللي عندك موجود هنا بالفعل) ...
+
+        // جلب حديث اليوم من API الدرر السنية
+        async function loadHadithOfTheDay() {
+            try {
+                // بنجيب حديث عشوائي من الدرر السنية (بنبحث عن كلمة شائعة زي "الإيمان" عشان نضمن نتائج)
+                const response = await fetch('https://dorar.net/dorar_api.json?skey=الإيمان');
+                const data = await response.json();
+                
+                if (data.ahadith && data.ahadith.result && data.ahadith.result.length > 0) {
+                    // بنختار حديث عشوائي من النتائج
+                    const randomIndex = Math.floor(Math.random() * Math.min(data.ahadith.result.length, 10));
+                    const hadith = data.ahadith.result[randomIndex];
+                    
+                    document.getElementById('hadith-text').innerText = hadith.hadith;
+                    // لو فيه شرح هيظهر، لو مفيش هيختفي
+                    if (hadith.sharh) {
+                        document.getElementById('hadith-explanation').innerText = hadith.sharh;
+                    } else {
+                        document.getElementById('hadith-explanation').style.display = 'none';
+                    }
+                    document.getElementById('hadith-grade').innerText = hadith.grade || 'صحيح';
+                    document.getElementById('hadith-box').style.display = 'block';
+                }
+            } catch (error) {
+                console.log('مشكلة في جلب الحديث:', error);
+                // لو فشل، مش هنظهر حاجة
+            }
+        }
+
+        // نشغل الدالة لما الصفحة تحمل
+        loadHadithOfTheDay();
+    </script>
     <script>
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
