@@ -1,0 +1,12 @@
+{
+  "name": "الأذكار",
+  "short_name": "الأذكار",
+  "description": "أذكار الصباح والمساء وسورة الكهف",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "dir": "rtl",
+  "lang": "ar",
+  "background_color": "#0c1613",
+  "theme_color": "#14805f",
+  "icons": [{ "src": "logo.png", "sizes": "512x512", "type": "image/png" }]
+}
