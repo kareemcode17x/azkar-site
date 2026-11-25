@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>أذكار المساء | الأذكار</title>
+<meta name="description" content="أذكار المساء كاملة مع عدّاد لكل ذكر وفضله.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<script>(function(){var s=null;try{s=localStorage.getItem('theme')}catch(e){}var d=s?s==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',d?'dark':'light')})();</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="evening">
+<header class="bar"><div class="bar-in">
+  <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>الرئيسية</a>
+  <h1>أذكار المساء</h1>
+  <button class="icon-btn" id="theme-toggle" type="button" aria-label="تبديل الوضع الليلي"></button>
+</div></header>
+<main class="wrap">
+  <div class="summary"><span>ورد أذكار المساء</span><span class="count" id="progress-text" aria-live="polite"></span><button class="link-btn" id="reset-all" type="button">إعادة الكل</button></div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  <p class="complete" id="complete">تقبّل الله منك، أتممت الورد</p>
+  <div id="azkar-container"></div>
+</main>
+<footer class="footer"><a href="https://t.me/touba_w_azkar" target="_blank" rel="noopener noreferrer">قناة التليجرام</a></footer>
+<script src="data/evening.js"></script>
+<script src="app.js"></script>
+<script src="azkar.js"></script>
+</body>
+</html>
