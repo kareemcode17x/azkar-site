@@ -42,6 +42,7 @@
     <h1>الأذكار</h1>
     <p class="verse">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</p>
   </header>
+  <p class="streaks" id="streaks" hidden></p>
 </div></div>
 <div class="page">
 
@@ -63,6 +64,16 @@
           <span class="row-body">
             <span class="row-title">أذكار المساء</span>
             <span class="row-desc">تُقرأ بعد صلاة العصر</span>
+          </span>
+          <svg class="row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="row" href="mawaqit.html" id="row-mawaqit">
+          <span class="row-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <span class="row-body">
+            <span class="row-title">مواقيت الصلاة</span>
+            <span class="row-desc">العدّ التنازلي للصلاة الجاية</span>
           </span>
           <svg class="row-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         </a>
@@ -166,7 +177,21 @@ function markNow(now) {
   });
 }
 
+function showStreaks() {
+  const box = document.getElementById('streaks');
+  [['morning', 'الصباح'], ['evening', 'المساء']].forEach(function (x) {
+    const n = AzkarStreak.count(x[0]);
+    if (n < 1) return;
+    const s = document.createElement('span');
+    s.className = 'chip';
+    s.textContent = x[1] + ': ' + AzkarStreak.label(n);
+    box.appendChild(s);
+  });
+  box.hidden = !box.children.length;
+}
+
 const now = new Date();
+showStreaks();
 showDate(now);
 showHadith(now);
 markNow(now);

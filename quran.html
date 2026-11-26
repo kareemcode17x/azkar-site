@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <script>(function(){var s=null;try{s=localStorage.getItem('theme')}catch(e){}var d=s?s==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',d?'dark':'light')})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="quran">
@@ -50,10 +51,11 @@
       <a id="next" href="quran.html"></a>
     </nav>
     <div class="player"><button id="play-audio-btn" type="button" aria-pressed="false"></button></div>
+    <p class="error" id="audio-msg" hidden>تعذّر تحميل التلاوة لهذه السورة الآن. جرّب لاحقًا.</p>
     <audio id="quran-audio" preload="none"></audio>
   </section>
 </main>
-<footer class="footer"><a href="https://t.me/touba_w_azkar" target="_blank" rel="noopener noreferrer">قناة التليجرام</a></footer>
+<footer class="footer"><span>النص: الرسم العثماني، برواية حفص عن عاصم، عبر alquran.cloud. التلاوة: مشاري العفاسي، عبر mp3quran.net.</span><a href="https://t.me/touba_w_azkar" target="_blank" rel="noopener noreferrer">لو لقيت خطأ بلّغنا على التليجرام</a></footer>
 <script src="app.js"></script>
 <script src="quran.js"></script>
 </body>

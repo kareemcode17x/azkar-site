@@ -10,6 +10,12 @@
   function norm(s) {
     return s.replace(/[\u064B-\u065F\u0670]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').trim();
   }
+  var BASM = 'بسم الله الرحمن الرحيم';
+  function strip(s) { return s.replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\u0640]/g, '').replace(/[ٱأإآ]/g, 'ا'); }
+  function dropBasmala(t) {   // بعض إصدارات الـ API تضيف البسملة لأول آية، وهي معروضة أعلاه
+    var w = t.split(' ');
+    return (w.length > 4 && strip(w.slice(0, 4).join(' ')) === BASM) ? w.slice(4).join(' ') : t;
+  }
   function link(n) { return 'quran.html?s=' + n; }
 
   /* ---------- الفهرس ---------- */
@@ -95,6 +101,8 @@
     }
     btn.addEventListener('click', function () { if (audio.paused) { audio.play().catch(function () {}); } else { audio.pause(); } });
     ['play', 'pause', 'ended'].forEach(function (ev) { audio.addEventListener(ev, label); });
+    audio.addEventListener('error', function () { $('audio-msg').hidden = false; });
+    audio.addEventListener('playing', function () { $('audio-msg').hidden = true; });
     label();
 
     // نص السورة
@@ -102,8 +110,7 @@
     function render(texts) {
       var frag = document.createDocumentFragment();
       texts.forEach(function (t, i) {
-        // بعض الإصدارات تضيف البسملة لأول آية، وهي معروضة أعلاه
-        if (i === 0 && n !== 1 && n !== 9 && /^بِسْمِ/.test(t)) t = t.split(' ').slice(4).join(' ');
+        if (i === 0 && n !== 1 && n !== 9) t = dropBasmala(t);
         frag.appendChild(document.createTextNode(t + ' '));
         var m = document.createElement('span');
         m.className = 'ayah-no';

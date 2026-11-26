@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مواقيت الصلاة | الأذكار</title>
+<meta name="description" content="مواقيت الصلاة في مدن مصر مع العدّ التنازلي للصلاة الجاية، بحسب الهيئة المصرية العامة للمساحة.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<script>(function(){var s=null;try{s=localStorage.getItem('theme')}catch(e){}var d=s?s==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',d?'dark':'light')})();</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="mawaqit">
+<header class="bar"><div class="bar-in">
+  <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>الرئيسية</a>
+  <h1>مواقيت الصلاة</h1>
+  <button class="icon-btn" id="theme-toggle" type="button" aria-label="تبديل الوضع الليلي"></button>
+</div></header>
+<main class="wrap">
+  <div class="mw-city"><label for="city">المدينة</label><select id="city"></select></div>
+  <section class="mw-next" aria-live="polite">
+    <p class="label">الصلاة الجاية</p>
+    <p class="name" id="next-name">…</p>
+    <p class="count" id="countdown">--:--:--</p>
+    <p class="label" id="next-time"></p>
+  </section>
+  <ul class="mw-list" id="mw-list"></ul>
+  <p class="mw-note" id="hijri"></p>
+  <p class="error" id="mw-error" hidden>تعذّر تحميل المواقيت. تأكد من اتصالك بالإنترنت.<br><button class="tap" id="mw-retry" type="button">إعادة المحاولة</button></p>
+  <p class="mw-note">الحساب بطريقة الهيئة المصرية العامة للمساحة، عبر aladhan.com. قد يختلف الأذان المحلي في مسجدك بدقيقة أو دقيقتين.</p>
+</main>
+<footer class="footer"><a href="https://t.me/touba_w_azkar" target="_blank" rel="noopener noreferrer">قناة التليجرام</a></footer>
+<script src="app.js"></script>
+<script src="mawaqit.js"></script>
+</body>
+</html>

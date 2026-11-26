@@ -11,3 +11,26 @@
     try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
   });
 })();
+
+// سلسلة المواظبة: أيام متتالية أتممت فيها أذكار الصباح أو المساء (محفوظة في المتصفح فقط)
+window.AzkarStreak = (function () {
+  function ymd(d) { return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
+  function read(p) { try { return JSON.parse(localStorage.getItem('azkar:streak:' + p)) || []; } catch (e) { return []; } }
+  return {
+    record: function (p) {
+      var a = read(p), t = ymd(new Date());
+      if (a.indexOf(t) === -1) { a.push(t); try { localStorage.setItem('azkar:streak:' + p, JSON.stringify(a.slice(-400))); } catch (e) {} }
+    },
+    count: function (p) {
+      var set = {}; read(p).forEach(function (x) { set[x] = 1; });
+      var d = new Date(), n = 0;
+      if (!set[ymd(d)]) d.setDate(d.getDate() - 1);   // لو لسه ما خلصتش النهارده، السلسلة بتتحسب لحد امبارح
+      while (set[ymd(d)]) { n++; d.setDate(d.getDate() - 1); }
+      return n;
+    },
+    label: function (n) {
+      var f = new Intl.NumberFormat('ar-EG');
+      return n === 1 ? 'يوم واحد' : n === 2 ? 'يومان متتاليان' : n <= 10 ? f.format(n) + ' أيام متتالية' : f.format(n) + ' يومًا متتاليًا';
+    }
+  };
+})();

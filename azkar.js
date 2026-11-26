@@ -45,7 +45,12 @@
     var done = data.filter(function (_, i) { return remaining(i) === 0; }).length;
     countEl.textContent = nf.format(done) + ' من ' + nf.format(data.length);
     bar.style.width = (data.length ? (done / data.length) * 100 : 0) + '%';
-    complete.classList.toggle('show', done === data.length && data.length > 0);
+    var all = done === data.length && data.length > 0;
+    complete.classList.toggle('show', all);
+    if (all) AzkarStreak.record(page);
+    var n = AzkarStreak.count(page), st = document.getElementById('streak');
+    st.hidden = n < 1;
+    if (n >= 1) st.textContent = 'سلسلة المواظبة على ' + document.querySelector('.bar h1').textContent + ': ' + AzkarStreak.label(n);
   }
 
   data.forEach(function (z, i) {
@@ -77,5 +82,6 @@
     data.forEach(function (_, i) { paint(i); });
     summary();
   });
+  document.getElementById('print-btn').addEventListener('click', function () { window.print(); });
   summary();
 })();
